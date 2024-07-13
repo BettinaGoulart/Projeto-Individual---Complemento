@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Startkick</title>
+    <link rel="stylesheet" href="LOGIN.CSS">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="logo">
+    <img class="img1" src="C:\Users\pc\Downloads\Coding\PROJETO-INDIVIDUAL-1°-SEMESTRE\IMAGENS\logo sem fundo e sem frase.png" alt="logo da empresa">
+</div>
+
+<div class="nav-container">
+    <a href="INICIAL.html" target="_self" class="nav-link" onclick="voltarInicial()"> Home </a>
+    <a href="CADASTRO.html" target="_self" class="nav-link" onclick="mostrarLogin()"> Cadastro </a>
+</div>
+
+<div class="container">    
+    <h1 class="titulo">Login</h1> 
+
+    <div class="input-container">
+
+        <h2 class="titulo2">Username</h2>
+        <input id="input_nome" class="digitar" type="text" placeholder="Digite o seu username...">
+
+        <h2 class="titulo2">Email</h2>
+        <input id="input_email" class="digitar" type="email" placeholder="Digite o seu email...">
+
+        <h2 class="titulo2">Senha</h2>
+        <input id="input_senha" class="digitar" type="password" placeholder="Digite a sua senha...">
+
+    </div>
+    <br>
+
+        <button onclick="cadastrar()"> Cadastrar </button>
+ 
+</body>
+</html>
+
+<script> 
+
+function cadastrar() {
+    var nome = input_nome.value;
+    var email = input_email.value;
+    var senha = input_senha.value;
+
+
+    if (nome === "" || email === "" || senha === "") {
+        alert("Impossível realizar o login. Por favor, preencha todos os campos.");
+        return;
+    }
+    
+    else {
+        alert("Sua conta foi criada com sucesso!");
+        window.location.href = "LOGIN.html"
+    }
+}
+
+</script>

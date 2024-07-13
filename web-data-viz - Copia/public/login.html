@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/LOGIN.CSS">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+    <title>StartKick | Login</title>
+
+    <script src="./js/sessao.js"></script>
+
+</head>
+
+<body>
+
+    <div class="logo">
+        <img class="img1"
+            src="assets/IMAGENS/logo sem fundo e sem frase.png"
+            alt="logo da empresa">
+    </div>
+
+    <!--Header-->
+
+    <div class="nav-container">
+        <a href="index.html" target="_self" class="nav-link" onclick="voltarInicial()"> Home </a>
+        <a href="CADASTRO.html" target="_self" class="nav-link" onclick="mostrarLogin()"> Cadastro </a>
+    </div>
+
+
+    <div class="login">
+
+        <div class="container">
+
+            <h1 class="titulo">Login</h1>
+
+            <div class="input-container">
+
+                <h2 class="titulo2">Username</h2>
+                <input id="input_nome" class="digitar" type="text" placeholder="Digite o seu username...">
+
+                <h2 class="titulo2">Email</h2>
+                <input id="input_email" class="digitar" type="email" placeholder="Digite o seu email...">
+
+                <h2 class="titulo2">Senha</h2>
+                <input id="input_senha" class="digitar" type="password" placeholder="Digite a sua senha...">
+
+            </div>
+            <br>
+            
+            <button onclick="autenticar()"> Entrar </button>
+            
+            <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
+
+            <div id="div_aguardar" class="loading-div"></div>
+
+
+            <div id="div_erros_login"></div>
+        </div>
+    </div>
+    </div>
+
+    <!--footer inicio-->
+    <!-- <div class="footer">
+        <div class="container">
+            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+            <span class="version">v1.0.0</span>
+        </div>
+    </div> -->
+    <!--footer fim-->
+
+</body>
+
+</html>
+
+<script>
+
+  var idUsuario = sessionStorage.ID_USUARIO;
+    function autenticar() {
+        aguardar();
+
+        var nomeVar = input_nome.value;
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        if (emailVar == "" || senhaVar == "" || nomeVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Impossível realizar o login. Por favor, preencha todos os campos.";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM USERNAME: ", nomeVar);
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                idUsuarioServer:idUsuario
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.username;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "PREFERENCIA.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>

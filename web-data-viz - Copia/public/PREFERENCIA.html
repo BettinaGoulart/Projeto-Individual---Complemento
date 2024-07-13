@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Tela de Usuário - Startkick </title>
+    <link rel="stylesheet" href="css/PREFERÊNCIA.CSS">
+    
+
+</head>
+
+<body id="body_pref">
+
+    <div class="navigation">
+        <ul>
+            <li class="list">
+                <u span style="color:#fff"><span class="title"
+                        style="color:#fff; font-size: 30px; text-align: center;padding-left: 70px;">STARTKICK</span></u>
+            </li>
+            <li class="list">
+                <a href="ind.html">
+                    <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="USUÁRIO.html">
+                    <span class="icon"><ion-icon name="thermometer-outline"></ion-icon></span>
+                    <span class="title">Tela do Usuário</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="PREFERENCIA.html">
+                    <span class="icon"> <ion-icon name="stats-chart-outline"></ion-icon></span>
+                    <span class="title">Suas Preferências</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="em alta.html">
+                    <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                    <span class="title">Em Alta</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="container">
+
+        <u><h1>Nos conte um pouco sobre você!</h1></u>
+
+        <button onclick="salvar()"> Salvar </button>
+
+        <div class="pref1">
+
+            ESCOLHA SEU TIME DO CORAÇÃO! <select id="pref1">
+
+                <option value="#"> Selecione uma Opção </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+                <option value="#"> Selecione </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="pref2">
+
+        ESCOLHA SUA LIGA PREFERIDA! <select id="pref2">
+
+            <option value="#">Selecione uma opção</option>
+            <option value="inglesa">English Premier League</option>
+            <option value="francesa">French Ligue 1</option>
+            <option value="alemanha">German 1. Bundesliga</option>
+            <option value="italiana">Italian Serie A</option>
+            <option value="espanhola">Spain Primera Division</option>
+            <option value="argentina">Argentina Primera División</option>
+            <option value="brasileira">Campeonato Brasileiro Série A</option>
+            <option value="portuguesa">Portuguese Liga ZON SAGRES</option>
+            <option value="saudita">Saudi Abdul L. Jameel League</option>
+            <option value="USA_liga">USA Major League Soccer</option>
+
+
+
+        </select>
+
+        </div>
+
+        
+        <div class="pref3">
+
+            ESCOLHA SUA SELEÇÃO DO CORAÇÃO! <select id="pref3">
+
+                <option value="#">Selecione uma Opção</option>
+                <option value="argentina">Argentina</option>
+                <option value="australia">Australia</option>
+                <option value="austria">Austria</option>
+                <option value="belgica">Belgica</option>
+                <option value="brasil">Brasil</option>
+                <option value="canada">Canada</option>
+                <option value="china">China</option>
+                <option value="inglaterra">Inglaterra</option>
+                <option value="franca">Franca</option>
+                <option value="alemanha">Alemanha</option>
+                <option value="grecia">Grecia</option>
+                <option value="italia">Italia</option>
+                <option value="mexico">Mexico</option>
+                <option value="paises_baixos">Paises Baixos</option>
+                <option value="noruega">Noruega</option>
+                <option value="polonia">Polonia</option>
+                <option value="portugal">Portugal</option>
+                <option value="russia">Russia</option>
+                <option value="espanha">Espanha</option>
+                <option value="USA">Estados Unidos</option>
+                <option value="gales">País de Gales</option>
+                
+            </select>
+
+        </div>
+
+
+        <div class="pref4">
+
+            ESCOLHA O ESTILO DE CAMISETAS QUE PREFERE! <br><br> <select id="pref4">
+
+            <option value="#">Selecione uma opção</option>
+            <option value="moderna">Moderna</option>
+            <option value="vintage">Vintage</option>
+            <option value="customizada">Customizada</option>
+            <option value="especial">Edição Especial</option>
+        </select>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+
+    function salvar() {
+
+        var pref1Var = pref1.value
+        var pref2Var = pref2.value
+        var pref3Var = pref3.value
+        var pref4Var = pref4.value
+
+        fetch("/usuarios/salvar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          pref1Server: pref1Var,
+          pref2Server: pref2Var,
+          pref3Server: pref3Var,
+          pref4Server: pref4Var,
+        }),
+      })
+
+      alert("Preferências salvas com sucesso!")
+
+    }
+
+</script>

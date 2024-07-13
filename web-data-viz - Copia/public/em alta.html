@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Página Inicial - StartKick </title>
+    <link rel="stylesheet" href="css/em alta.CSS">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img class="logo" src="assets/IMAGENS/logo sem fundo e sem frase.png" alt="">
+        <div class="menu">
+            Não perca as tendências do momento!
+        </div>
+    </header>
+
+    <div class="div_mae">
+
+
+        <div class="titulo">
+            <h1>EM ALTA</h1>
+            Seja Bem-Vindo(a)! Conheça e avalie novidades, reliquias, edições limitadas dentre as camisetas mais
+            procuradas do momento. Agora é o momento de conhecer mais sobre seu estilo!
+            <br>
+            <br>
+            _________________________________________________
+        </div>
+
+        <div class="camisetas">
+            <!-- TRAZER AS URLS DA LISTA -->
+            <img src="assets/IMAGENS/Camiseta foto.jpg" alt="">
+            <img src="assets/IMAGENS/Camiseta foto.jpg" alt="">
+            <img src="assets/IMAGENS/Camiseta foto.jpg" alt="">
+            <img src="assets/IMAGENS/Camiseta foto.jpg" alt="">
+            <img src="assets/IMAGENS/Camiseta foto.jpg" alt="">
+        </div>
+
+        <div class="nota">
+            <input type="number" id="input_nota1">
+            <button onclick="nota()">Avaliar</button>
+
+            <input type="number" id="input_nota2">
+
+
+            <input type="number" id="input_nota3">
+
+
+            <input type="number" id="input_nota4">
+
+
+            <input type="number" id="input_nota5">
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    var idUsuario = sessionStorage.ID_USUARIO
+    var lista_notas = []
+    var lista_camiseta = []
+
+    var lista_url = ['https://evoluasports.com.br/produtos/camisa-al-hilal-home-1-2023-24-puma-torcedor-masculina/?variant=709519939',
+
+        'https://evoluasports.com.br/produtos/camisa-alemanha-home-1-2024-adidas-torcedor-masculina/?variant=860212593',
+
+        'https://evoluasports.com.br/produtos/camisa-ajax-home-1-2023-24-adidas-torcedor-masculina/?variant=709519077',
+
+        'https://evoluasports.com.br/produtos/camisa-barcelona-home-1-2023-24-nike-torcedor-masculina1/',
+
+        'https://evoluasports.com.br/produtos/camisa-bayern-de-munique-home-1-2023-24-adidas-torcedor-masculina/',
+
+        'https://evoluasports.com.br/produtos/camisa-inter-de-milao-home-1-2023-24-nike-torcedor-masculina1/',
+
+        'https://evoluasports.com.br/produtos/camisa-inter-miami-away-2-2024-25-adidas-torcedor-masculina/',
+
+        'https://evoluasports.com.br/produtos/camisa-italia-away-2-2023-adidas-torcedor-masculina/',
+
+        'https://evoluasports.com.br/produtos/camisa-japao-away-2-2023-adidas-torcedor-masculina/',
+
+        'https://evoluasports.com.br/produtos/camisa-juventus-home-1-2023-24-adidas-torcedor-masculina/']
+
+
+
+    // USAR MATH.RANDOM PARA PASSAR PELA LISTA DE URL'S E ATUALIZAR AS IMAGENS DA PÁGINA
+
+    function nota() {
+
+        var nota1Var = Number(input_nota1.value)
+        var nota2Var = Number(input_nota2.value)
+        var nota3Var = Number(input_nota3.value)
+        var nota4Var = Number(input_nota4.value)
+        var nota5Var = Number(input_nota5.value)
+        var idUsuarioVar = sessionStorage.ID_USUARIO;
+
+        if (nota1Var == '' && nota2Var == '' && nota3Var == '' && nota4Var == '' && nota5Var == '') {
+
+            alert("Preencha todos os campos para avaliar as camisetas!")
+
+        }
+
+        else if (nota1Var > 5 || nota2Var > 5 || nota3Var > 5 || nota4Var > 5 || nota5Var > 5) {
+            
+            alert ("Por favor de uma nota de 0 a 5 para as peças!")
+        }
+
+        else {
+
+            lista_notas.push(nota1Var)
+            lista_notas.push(nota2Var)
+            lista_notas.push(nota3Var)
+            lista_notas.push(nota4Var)
+            lista_notas.push(nota5Var)
+
+           console.log(lista_notas)
+
+            lista_camiseta.push('camiseta1')
+            lista_camiseta.push('camiseta2')
+            lista_camiseta.push('camiseta3')
+            lista_camiseta.push('camiseta4')
+            lista_camiseta.push('camiseta5')
+
+            console.log(lista_camiseta)
+
+
+            fetch(`/usuarios/nota`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nota1Server: nota1Var,
+                    nota2Server: nota2Var,
+                    nota3Server: nota3Var,
+                    nota4Server: nota4Var,
+                    nota5Server: nota5Var,
+                    idUsuarioServer: idUsuarioVar
+
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        alert("avaliação enviada com sucesso!")
+                    } else {
+                        throw "Houve um erro ao tentar realizar a avaliação!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+        }
+    }
+
+    //JOGAR O FETCH PARA DENTRO DA FUNÇÃO
+
+
+</script>

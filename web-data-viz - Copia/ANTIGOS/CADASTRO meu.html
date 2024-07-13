@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Startkick</title>
+    <link rel="stylesheet" href="css/CADASTRO.CSS">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="logo">
+    <img class="img1" src="C:\Users\pc\Downloads\Coding\PROJETO-INDIVIDUAL-1°-SEMESTRE\IMAGENS\logo sem fundo e sem frase.png" alt="logo da empresa">
+</div>
+
+<div class="nav-container">
+    <a href="INICIAL.html" target="_self" class="nav-link" onclick="voltarInicial()"> Home </a>
+    <a href="LOGIN.html" target="_self" class="nav-link" onclick="mostrarLogin()"> Login </a>
+</div>
+
+<div class="container">    
+    <h1 class="titulo">Cadastro</h1> 
+
+    <div class="input-container">
+
+        <h2 class="titulo2">Username</h2>
+        <input id="input_nome" class="digitar" type="text" placeholder="Digite o seu username...">
+
+        <h2 class="titulo2">Email</h2>
+        <input id="input_email" class="digitar" type="email" placeholder="Digite o seu email...">
+
+    <div> 
+        <h2 class="titulo2 titulo-data">Data de Nascimento</h2>
+        <input id="input_data" class="digitar input-data" type="date">
+    </div>   
+
+        <h2 class="titulo2">Número Celular</h2>
+        <input id="input_celular" class="digitar" type="number" placeholder="Digite o seu número...">
+
+        <h2 class="titulo2">Senha</h2>
+        <input id="input_senha" class="digitar" type="password" placeholder="Digite a sua senha...">
+
+        <h2 class="titulo2">Confirmação de Senha</h2>
+        <input id="input_confirmar_senha" class="digitar" type="password" placeholder="Digite a sua senha novamente...">
+    </div>
+    <br>
+
+        <button onclick="cadastrar()"> Cadastrar </button>
+ 
+
+</body>
+</html>
+
+<script> 
+
+function cadastrar() {
+    var nome = input_nome.value;
+    var celular = Number(input_celular.value);
+    var email = input_email.value;
+    var senha = input_senha.value;
+    var confirmarSenha = input_confirmar_senha.value;
+
+    var url = "login.html";
+
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (nome === "" || celular === "" || email === "" || senha === "" || confirmarSenha === "") {
+        alert("Impossível realizar o cadastro. Por favor, preencha todos os campos.");
+        return;
+    }
+
+    if (nome.length <= 1 || celular.length < 11 || !emailRegex.test(email) || senha !== confirmarSenha) {
+
+        if (nome.length <= 1) {
+            alert("Nome inválido. Por favor, insira um nome válido.");
+        }
+
+        if (celular.length < 11) {
+            alert("Número inválido. Por favor, insira um número válido com 11 dígitos.");
+        }
+
+        if (!emailRegex.test(email)) {
+            alert("Email inválido. Por favor, insira um email válido.");
+        }
+        if (senha !== confirmarSenha) {
+            alert("Senhas incompatíveis. Por favor, confirme sua senha corretamente.");
+        }
+
+    } else {
+        alert("Sua conta foi criada com sucesso!");
+        window.location.href = "LOGIN.html"
+    }
+}
+
+</script>

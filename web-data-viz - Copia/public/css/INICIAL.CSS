@@ -1,0 +1,281 @@
+  /* Paleta de cores: 
+  vermelho: #b41d1d
+  Laranja: #e85817
+  Amarelo: #f8c71d
+  Azul: #025360
+  Preto: #000000 */
+
+  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+  html {
+      scroll-behavior: smooth;
+  }
+
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Josefin Sans", sans-serif;
+  }
+
+  body {
+      height: 100px;
+      background-color: #ededed;
+  }
+
+  /* --------------------------------------------------------------- */
+
+  header {
+      width: 100%;
+      height: 120px;
+      background-color: #002860d2;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      position: fixed;
+
+  }
+
+  .logo {
+      width: 180px;
+      height: 180px;
+      margin-left: 20px;
+      margin-top: 20px;
+  }
+
+  .menu {
+      display: flex;
+      gap: 100px;
+      margin-right: 30px;
+  }
+
+  .menu a {
+      text-decoration: none;
+      display: flex;
+      color: #ffffff;
+      font-size: 20px;
+      font-family: "Josefin Sans", sans-serif;
+  }
+
+  /* --------------------------------------------------------------- */
+
+  .banner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: self-start;
+
+      background-image: url(./../assets/IMAGENS/Design\ sem\ nome\ \(1\).png);
+      background-position: 0px;
+      width: 100%;
+      height: 1100px;
+      background-repeat: no-repeat;
+      text-align: center;
+      border-color: #002860;
+      padding-top: 350px;
+      padding-left: 330px;
+      background-color: #ededed;
+  }
+
+  .banner button {
+
+      height: 100px;
+      width: 300px;
+      border-radius: 20px;
+      background-color: #1474f3;
+      color: #002860;
+      border-color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+  }
+
+  /*----------------------------------------------------------------*/
+
+  .oque {
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 80px;
+
+
+      height: 800px;
+
+  }
+
+  .oque .foto {
+
+      height: 100%
+  }
+
+  .oque .foto img {
+
+      height: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 500px #002860;
+  }
+
+  .oque .texto_oque {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40%;
+      font-size: 24px;
+      text-align: center;
+  }
+
+  .oque .texto_oque img {
+
+      height: 200px;
+      width: 350px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px #002860;
+  }
+
+  /*----------------------------------------------------------------*/
+
+  .categorias {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 180px;
+
+  }
+
+  .categorias .preferencia {
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+
+  }
+
+  .categorias .alta {
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      margin-bottom: 50px;
+
+  }
+
+  .categorias .preferencia .texto_pref {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40%;
+      font-size: 30px;
+      text-align: end;
+  }
+
+  .categorias .alta .texto_alta {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40%;
+      font-size: 30px;
+      text-align: start;
+  }
+
+  .categorias .preferencia .foto2 img {
+
+      height: 400px;
+      width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #002860;
+  }
+
+  .categorias .alta .foto3 img {
+
+      height: 400px;
+      width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #002860;
+  }
+
+  /*----------------------------------------------------------------*/
+
+  .dev {
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      margin-top: 120px;
+      margin-bottom: 50px;
+
+
+      height: 800px;
+
+  }
+
+  .dev .foto_eu {
+
+      height: 100%
+  }
+
+  .dev .foto_eu img {
+
+      height: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 500px #002860;
+  }
+
+  .dev .texto_eu {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40%;
+      font-size: 22px;
+      text-align: start;
+  }
+
+  /*----------------------------------------------------------------*/
+
+  footer {
+      height: 320px;
+      background-color: #002860;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+  }
+
+  .credito {
+      text-decoration: none;
+      color: #000;
+      font-size: 25px;
+  }
+
+  footer .github img{
+      height: 100px;
+      width: 100px;
+  }
+
+  /*----------------------------------------------------------------*/
+
+  .menu a:hover {
+
+      font-size: 23px;
+      animation-name: aumentar;
+      animation-duration: 0.5s;
+
+  }
+
+  @keyframes aumentar {
+
+      from {
+          font-size: 20px
+      }
+
+      to {
+          font-size: 23px
+      }
+
+  }

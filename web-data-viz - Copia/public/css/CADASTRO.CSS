@@ -1,0 +1,144 @@
+body {
+  background-image: url('./../assets/IMAGENS/Fundo\ de\ cadastro\ e\ login\ 4.png');
+  background-position: center;
+  background-size: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+* {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.card_erro #mensagem_erro{
+  font-weight: 400;
+  font-size: 15px;
+  color: #fff;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 350px;
+  overflow-y: auto;
+}
+
+.input-container::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.digitar {
+  color: black;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 40px;
+  width: 400px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.input-data {
+  color: #000;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 20px;
+  width: 400px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.titulo-data{
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background: #002860;
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 10px;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+button {
+  width: 244px;
+  height: 40px;
+  font-family: "DM Serif Display", serif;
+  font-size: 20px;
+  background: #fff;
+  color: #000;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  margin-right: 5px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #c4c4c4;
+}
+
+.titulo {
+  color: white;
+  text-align: center;
+  font-family: "DM Serif Display", serif;
+  margin-bottom: 10px;
+}
+
+.titulo2 {
+  color: white;
+  font-family: "DM Serif Display", serif;
+  margin-bottom: 5px;
+  left: 0;
+}
+
+.nav-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: -20px;
+}
+
+.nav-container .nav-link {
+  color:  #1474f3; 
+  font-weight: bold;
+  text-decoration: none; 
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: -px;
+  font-size: 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: -32px;
+}
+
+.logo img {
+  width: 180px;
+  height: auto; 
+}
+
+.nav-link:hover{
+  transition: 0.4s;
+  color: #002860;
+  }

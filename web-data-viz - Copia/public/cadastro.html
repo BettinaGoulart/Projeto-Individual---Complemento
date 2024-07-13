@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/CADASTRO.CSS">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <title>Startkick | Cadastro</title>
+
+  <script src="./js/sessao.js"></script>
+
+</head>
+
+<body onload="listar()">
+
+  <div class="logo">
+    <img class="img1" src="assets/IMAGENS/logo sem fundo e sem frase.png" alt="logo da empresa">
+  </div>
+
+  <!--header inicio-->
+  <div class="nav-container">
+    <a href="index.html" target="_self" class="nav-link" onclick="voltarInicial()"> Home </a>
+    <a href="LOGIN.html" target="_self" class="nav-link" onclick="mostrarLogin()"> Login </a>
+  </div>
+  <!--header fim-->
+
+  <div class="login">
+
+    <div class="container">
+      <h1 class="titulo">Cadastro</h1>
+
+      <div class="input-container">
+
+        <h2 class="titulo2">Username</h2>
+        <input id="input_nome" class="digitar" type="text" placeholder="Digite o seu username...">
+
+        <h2 class="titulo2">Email</h2>
+        <input id="input_email" class="digitar" type="email" placeholder="Digite o seu email...">
+
+        <div>
+          <h2 class="titulo2 titulo-data">Data de Nascimento</h2>
+          <input id="input_data" class="digitar input-data" type="date">
+        </div>
+
+        <h2 class="titulo2">Número Celular</h2>
+        <input id="input_celular" class="digitar" type="number" placeholder="Digite o seu número...">
+
+        <h2 class="titulo2">Senha</h2>
+        <input id="input_senha" class="digitar" type="password" placeholder="Digite a sua senha...">
+
+        <h2 class="titulo2">Confirmação de Senha</h2>
+        <input id="input_confirmar_senha" class="digitar" type="password" placeholder="Digite a sua senha novamente...">
+      </div>
+      <br>
+
+      <button onclick="cadastrar()"> Cadastrar </button>
+
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
+
+      <div id="div_aguardar" class="loading-div">
+        <!-- NÃO APAGA A DIV BETTINA -->
+      </div>
+
+      <div id="div_erros_login"></div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+</html>
+
+<script>
+  function cadastrar() {
+    aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+
+    var nomeVar = input_nome.value;
+    var celularVar = Number(input_celular.value);
+    var celularVar2 = input_celular.value;
+    var emailVar = input_email.value;
+    var senhaVar = input_senha.value;
+    var confirmarSenhaVar = input_confirmar_senha.value;
+
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    if (
+      nomeVar == "" ||
+      celularVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmarSenhaVar == ""
+
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Impossível realizar o cadastro. Por favor, preencha todos os campos.";
+
+      finalizarAguardar();
+      return false;
+    }
+
+    else if (nomeVar.length <= 1 || celularVar2.length != 11|| !emailRegex.test(emailVar) || senhaVar !== confirmarSenhaVar) {
+
+      if (nomeVar.length <= 1) {
+        alert("Nome inválido. Por favor, insira um nome válido.");
+      }
+
+      if (celularVar2 != 11) {
+        alert("Número inválido. Por favor, insira um número válido com 11 dígitos.");
+      }
+
+      if (!emailRegex.test(emailVar)) {
+        alert("Email inválido. Por favor, insira um email válido.");
+      }
+      if (senhaVar !== confirmarSenhaVar) {
+        alert("Senhas incompatíveis. Por favor, confirme sua senha corretamente.");
+      }
+
+      else {
+        setInterval(sumirMensagem, 5000);
+      }
+
+    }
+
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          celularServer: celularVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar,
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            cardErro.style.display = "block";
+
+            mensagem_erro.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+
+      return false;
+    }
+
+    // function listar() {
+    //   fetch("/empresas/listar", {
+    //     method: "GET",
+    //   })
+    //     .then(function (resposta) {
+    //       resposta.json().then((empresas) => {
+    //         empresas.forEach((empresa) => {
+    //           listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+    //         });
+    //       });
+    //     })
+    //     .catch(function (resposta) {
+    //       console.log(`#ERRO: ${resposta}`);
+    //     });
+    // }
+
+    function sumirMensagem() {
+      cardErro.style.display = "none";
+    }
+</script>
